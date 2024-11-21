@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sender_id')->nullable()->constrained('users');
+            $table->foreignId('sender_account_id')->nullable()->constrained('accounts');
+            $table->foreignId('recepient_id')->nullable()->constrained('users');
+            $table->foreignId('recepient_account_id')->nullable()->constrained('accounts');
+            $table->string('reference')->index('transfer_reference_index');
+            $table->string('status');
+            $table->decimal('amount', 16, 4);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
