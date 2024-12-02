@@ -2,20 +2,24 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
-    //
-    protected $guarded = []; 
-
-    public function owner(){
-        return $this->belongsTo(User::class, 'user_id');
-    }
-    
-    public function account(){
-        return $this->belongsTo(Account::class, 'account_id');
+    use HasFactory;
+    protected $guarded=[];
+    public function owner(): BelongsTo
+    { 
+        return $this->belongsTo(User::class, 'user_id');  
     }
 
-
+    public function account(): BelongsTo
+    { 
+        return $this->belongsTo(Accounts::class, 'account_id');  
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+  
     protected $guarded = []; 
 
     /**
@@ -42,15 +45,19 @@ class User extends Authenticatable
         ];
     }
 
-    public function transactions(){
-        return $this->hasMany(Transaction::class);
-    }
-    
-    public function transfers(){
-        return $this->hasMany(Transaction::class, 'sender');
+    public function transactions(): HasMany
+    { 
+        return $this->hasMany(Transaction::class);  
     }
 
-    public function account(){
-        return $this->hasOne(Account::class, 'user_id');
+    public function transfers(): HasMany
+    { 
+        return $this->hasMany(Transaction::class, 'sender');  
+    }
+
+    public function accounts(): HasOne
+    { 
+        return $this->HasOne(Accounts::class , 'user_id');  
     }
 }
+
