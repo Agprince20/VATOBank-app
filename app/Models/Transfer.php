@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Transfer extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $guarded = [];
 
     public function sender(): BelongsTo
     { 
@@ -22,11 +22,10 @@ class Transfer extends Model
 
     public function recepient(): BelongsTo
     { 
-        return $this->belongsTo(User::class, 'recepient_id');   
+        return $this->belongsTo(User::class, 'recipient_id');   
     }
     public function recepientAccount(): BelongsTo
     { 
-        return $this->belongsTo(Accounts::class,'recepient_account_id');  
+        return $this->belongsTo(Accounts::class,'recipient_account_id');  
     }
-
 }
