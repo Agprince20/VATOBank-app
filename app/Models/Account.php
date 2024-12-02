@@ -2,18 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Account extends Model
+class Accounts extends Model
 {
-    //
-    protected $guarded = []; 
+    use HasFactory, SoftDeletes;
+    protected $guarded=[];
 
-    public function owner(){
-        return $this->belongsTo(User::class);
+    public function owner(): BelongsTo 
+    { 
+        return $this->belongsTo(User::class);  
     }
 
-    public function transactions(){
-        return $this->hasMany(Transaction::class);
+    public function transactions(): HasMany
+    { 
+        return $this->hasMany(Transaction::class);  
     }
 }
