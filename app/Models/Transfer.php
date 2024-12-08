@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Transfer extends Model
 {
+
     //
    use HasFactory;
    protected $guarded = []; 
@@ -38,3 +39,4 @@ public function recipientAccount(): BelongsTo{
     return $this->belongsTo(Account::class, 'recipient_account_id');
 }
 }
+   

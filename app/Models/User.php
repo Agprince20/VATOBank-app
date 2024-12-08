@@ -32,6 +32,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+  
     protected $guarded = []; 
 
     /**
@@ -67,5 +68,7 @@ class User extends Authenticatable
 
     public function account(): HasOne{
         return $this->hasOne(Account::class, 'user_id'); 
+
     }
 }
+
